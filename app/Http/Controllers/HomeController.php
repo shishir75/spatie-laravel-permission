@@ -27,12 +27,18 @@ class HomeController extends Controller
     {
         //Role::create(['name'=> 'writer']);
         //$permission = Permission::create(['name' => 'write articles']);
-        $role = Role::findById(1);
-        $permission = Permission::findById(2);
+        //$role = Role::findById(1);
+        // $permission = Permission::findById(2);
         //$role->givePermissionTo($permission);
 
-        $permission->removeRole($role);
+        // $permission->removeRole($role);
+
+        //auth()->user()->givePermissionTo('edit articles');
+        //auth()->user()->assignRole('writer');
+
+        return auth()->user()->permissions;
 
         return view('home');
     }
-}
+
+
