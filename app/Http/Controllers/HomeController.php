@@ -36,9 +36,11 @@ class HomeController extends Controller
         //auth()->user()->givePermissionTo('edit articles');
         //auth()->user()->assignRole('writer');
 
-        return auth()->user()->permissions;
+        //return auth()->user()->permissions;
 
         return view('home');
     }
+
+}
 
 
