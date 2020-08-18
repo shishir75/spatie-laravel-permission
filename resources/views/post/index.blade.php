@@ -32,12 +32,10 @@
                                         <td>{{ $post->title}}</td>
                                         <td>{{ $post->user->name }}</td>
                                         <td>
-                                            <button class="btn btn-secondary">Edit</button>
+                                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-secondary">Edit</a>
                                         </td>
                                     </tr>
                                 @endforeach
-
-
                             </tbody>
                           </table>
                     </div>
