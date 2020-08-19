@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/post', 'PostController@store')->name('post.store');
     Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
     Route::put('/post/{id}', 'PostController@update')->name('post.update');
+
+    Route::get('/role', 'RoleController@index')->name('role.index');
+    Route::get('/role/create', 'RoleController@create')->name('role.create');
+    Route::post('/role', 'RoleController@store')->name('role.store');
 });
 
 
