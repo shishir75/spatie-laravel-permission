@@ -18,12 +18,24 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Permissions</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($roles as $role)
+                                <tr>
+                                    <th scope="row">{{ $role->name }}</th>
+                                    @php
+                                        $permissions = $role->permissions;
+                                    @endphp
+                                    <td>
+                                        @foreach ($permissions as $permission)
+                                            <button class="btn btn-sm btn-info"> {{ $permission->name}} </button>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         </table>
                 </div>

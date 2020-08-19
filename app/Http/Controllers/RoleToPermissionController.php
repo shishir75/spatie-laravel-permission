@@ -17,10 +17,18 @@ class RoleToPermissionController extends Controller
      */
     public function index()
     {
-        $all_users_with_all_their_roles = User::with('roles')->get();
-        //dd($all_users_with_all_their_roles);
+        $roles = Role::all();
 
-        return view('role-permission.index');
+        // $role = Role::findById(4);
+
+        // $permissions = $role->permissions;
+
+        // foreach($permissions as $permission)
+        // {
+        //     echo $permission->name;
+        // }
+
+        return view('role-permission.index', compact('roles'));
     }
 
     /**
