@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Create User To Role')
+@section('title', 'Create User To Permission')
 
 @push('css')
 
@@ -11,11 +11,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Create User To Role
-                    <a href="{{ route('user-role.index') }}" class="btn btn-success float-right">All User To Roles</a>
+                    Create User To Permission (Direct)
+                    <a href="{{ route('user-permission.index') }}" class="btn btn-success float-right">All User To Permissions</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user-role.store') }}" method="post">
+                    <form action="{{ route('user-permission.store') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -32,17 +32,17 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">Role Name</label>
-                                    <select class="select2" multiple="multiple" name="role_id[]" data-placeholder="Select a Role" style="width: 100%;">
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    <label for="title">Permission Name</label>
+                                    <select class="select2" multiple="multiple" name="permission_id[]" data-placeholder="Select a Permission" style="width: 100%;">
+                                        @foreach ($permissions as $permission)
+                                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary float-right">Create User Role</button>
+                        <button type="submit" class="btn btn-primary float-right">Create User Permission</button>
                     </form>
                 </div>
                 </div>

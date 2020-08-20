@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user-role', 'UserToRoleController@index')->name('user-role.index');
     Route::get('/user-role/create', 'UserToRoleController@create')->name('user-role.create');
     Route::post('/user-role', 'UserToRoleController@store')->name('user-role.store');
+
+    Route::get('/user-permission', 'UserToPermissionController@index')->name('user-permission.index');
+    Route::get('/user-permission/create', 'UserToPermissionController@create')->name('user-permission.create');
+    Route::post('/user-permission', 'UserToPermissionController@store')->name('user-permission.store');
 });
 
 
