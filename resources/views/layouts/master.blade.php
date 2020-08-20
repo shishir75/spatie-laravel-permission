@@ -100,6 +100,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('user-role.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users blue"></i>
+                            <p>User To Role</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('post.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-users blue"></i>
                             <p>Posts</p>
