@@ -16,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->latest()->get();
-        return view('post.index', compact('posts'));
+        $posts = Post::with( 'user' )->latest()->get();
+        return view( 'post.index', compact( 'posts' ) );
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view( 'post.create' );
     }
 
     /**
@@ -36,14 +36,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store( PostRequest $request )
     {
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
-        return redirect()->route('post.index');
+        return redirect()->route( 'post.index' );
     }
 
     /**
@@ -52,10 +52,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
-        $post = Post::findOrFail($id);
-        return view('post.edit', compact('post'));
+        $post = Post::findOrFail( $id );
+        return view( 'post.edit', compact( 'post' ) );
     }
 
     /**
@@ -65,14 +65,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update( PostRequest $request, $id )
     {
-        $post = Post::findOrFail($id);
+        $post = Post::findOrFail( $id );
 
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
 
-        return redirect()->route('post.index');
+        return redirect()->route( 'post.index' );
     }
 }

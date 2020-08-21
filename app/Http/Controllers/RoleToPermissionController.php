@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RolePermissionRequest;
-use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -28,7 +27,7 @@ class RoleToPermissionController extends Controller
         //     echo $permission->name;
         // }
 
-        return view('role-permission.index', compact('roles'));
+        return view( 'role-permission.index', compact( 'roles' ) );
     }
 
     /**
@@ -40,7 +39,7 @@ class RoleToPermissionController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('role-permission.create', compact('roles', 'permissions'));
+        return view( 'role-permission.create', compact( 'roles', 'permissions' ) );
     }
 
     /**
@@ -49,20 +48,19 @@ class RoleToPermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RolePermissionRequest $request)
+    public function store( RolePermissionRequest $request )
     {
         $role_id = $request->role_id;
         $permissions_id = $request->permission_id;
 
-        $role = Role::findById($role_id);
+        $role = Role::findById( $role_id );
 
-        foreach($permissions_id as $permission_id)
-        {
-            $permission = Permission::findById($permission_id);
+        foreach ( $permissions_id as $permission_id ) {
+            $permission = Permission::findById( $permission_id );
 
-            $role->givePermissionTo($permission);
+            $role->givePermissionTo( $permission );
         }
 
-        return redirect()->route('role-permission.index');
+        return redirect()->route( 'role-permission.index' );
     }
 }

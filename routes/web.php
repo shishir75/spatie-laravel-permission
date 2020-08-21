@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,5 +48,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user-permission/create', 'UserToPermissionController@create')->name('user-permission.create');
     Route::post('/user-permission', 'UserToPermissionController@store')->name('user-permission.store');
 });
-
-
