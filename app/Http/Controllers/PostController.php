@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'permission:create post' )->only( ['create, store'] );
+        $this->middleware( 'permission:edit post' )->only( ['edit', 'update'] );
+    }
+
     /**
      * Display a listing of the resource.
      *
