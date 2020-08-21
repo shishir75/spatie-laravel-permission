@@ -17,6 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with( 'user' )->latest()->get();
+
         return view( 'post.index', compact( 'posts' ) );
     }
 
@@ -43,6 +44,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
+
         return redirect()->route( 'post.index' );
     }
 
@@ -55,6 +57,7 @@ class PostController extends Controller
     public function edit( $id )
     {
         $post = Post::findOrFail( $id );
+
         return view( 'post.edit', compact( 'post' ) );
     }
 
