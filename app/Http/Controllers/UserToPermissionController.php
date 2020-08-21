@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Permission;
 
 class UserToPermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'role:admin' );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,8 @@ class UserToPermissionController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user-permission.index', compact('users'));
+
+        return view( 'user-permission.index', compact( 'users' ) );
     }
 
     /**
@@ -29,7 +34,8 @@ class UserToPermissionController extends Controller
     {
         $users = User::all();
         $permissions = Permission::all();
-        return view('user-permission.create', compact('users', 'permissions'));
+
+        return view( 'user-permission.create', compact( 'users', 'permissions' ) );
     }
 
     /**
@@ -38,16 +44,16 @@ class UserToPermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserToPermissionRequest $request)
+    public function store( UserToPermissionRequest $request )
     {
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail( $request->user_id );
         $permissions_id = $request->permission_id;
 
-        foreach($permissions_id as $permission_id)
-        {
-            $user->givePermissionTo($permission_id);
+        foreach ( $permissions_id as $permission_id ) {
+            $user->givePermissionTo( $permission_id );
         }
-        return redirect()->route('user-permission.index');
+
+        return redirect()->route( 'user-permission.index' );
     }
 
     /**
@@ -56,7 +62,7 @@ class UserToPermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
         //
     }
@@ -67,7 +73,7 @@ class UserToPermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
         //
     }
@@ -79,7 +85,7 @@ class UserToPermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
         //
     }
@@ -90,7 +96,7 @@ class UserToPermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id )
     {
         //
     }

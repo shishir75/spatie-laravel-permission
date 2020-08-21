@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 
 class RoleToPermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'role:admin' );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -39,6 +43,7 @@ class RoleToPermissionController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
+
         return view( 'role-permission.create', compact( 'roles', 'permissions' ) );
     }
 

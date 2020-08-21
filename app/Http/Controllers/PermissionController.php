@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
-use function Ramsey\Uuid\v1;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\PermissionRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'role:admin' );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,8 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('permission.index', compact('permissions'));
+
+        return view( 'permission.index', compact( 'permissions' ) );
     }
 
     /**
@@ -29,7 +32,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('permission.create');
+        return view( 'permission.create' );
     }
 
     /**
@@ -38,9 +41,10 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PermissionRequest $request)
+    public function store( PermissionRequest $request )
     {
-        Permission::create(['name' => Str::lower($request->name)]);
-        return redirect()->route('permission.index');
+        Permission::create( ['name' => Str::lower( $request->name )] );
+
+        return redirect()->route( 'permission.index' );
     }
 }

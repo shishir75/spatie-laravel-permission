@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 
 class UserToRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'role:admin' );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,8 @@ class UserToRoleController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user-role.index', compact('users'));
+
+        return view( 'user-role.index', compact( 'users' ) );
     }
 
     /**
@@ -29,7 +34,8 @@ class UserToRoleController extends Controller
     {
         $users = User::all();
         $roles = Role::all();
-        return view('user-role.create', compact('users', 'roles'));
+
+        return view( 'user-role.create', compact( 'users', 'roles' ) );
     }
 
     /**
@@ -38,17 +44,16 @@ class UserToRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserToRoleRequest $request)
+    public function store( UserToRoleRequest $request )
     {
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail( $request->user_id );
         $roles_id = $request->role_id;
 
-        foreach($roles_id as $role_id)
-        {
-            $user->assignRole($role_id);
+        foreach ( $roles_id as $role_id ) {
+            $user->assignRole( $role_id );
         }
 
-        return redirect()->route('user-role.index');
+        return redirect()->route( 'user-role.index' );
     }
 
     /**
@@ -57,7 +62,7 @@ class UserToRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
         //
     }
@@ -68,7 +73,7 @@ class UserToRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
         //
     }
@@ -80,7 +85,7 @@ class UserToRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
         //
     }
@@ -91,7 +96,7 @@ class UserToRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id )
     {
         //
     }
